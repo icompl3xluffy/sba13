@@ -13,16 +13,21 @@ router.post('/', async (req, res) => {
 });
 
 
-// router.get('/', async (req, res) => {
-//   try {
-//     const {id} = req.params
-//     const books = await Book.find();
-//     res.json(books);
+router.get('/', async (req, res) => {
+  try {
+    const { category, minPrice,maxprice, sortBy} = req.query;
+
+    const page= Number (req.query.page) || 1;
+    const limit =Number(req.query.limit) ||10;
+
+    const filter
+    
+    res.json(products);
    
-//   } catch (err) {
-//      res.status(500).json({ error: err.message });
-//   }
-// });
+  } catch (err) {
+     res.status(500).json({ error: err.message });
+  }
+});
 
 router.get('/:id', async (req, res) => {
   try {
@@ -34,8 +39,6 @@ router.get('/:id', async (req, res) => {
      res.status(400).json({ error: err.message });
   }
 })
-
-
 
 router.put('/:id', async (req, res) => {
   try {
