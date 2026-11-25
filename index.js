@@ -3,20 +3,12 @@ import dns from 'node:dns';
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 import express from 'express';
 import mongoose from 'mongoose';
-
-
-const uri = process.env.MONGO_URI
-mongoose.connect(uri)
-    .then(() => {
-        console.log('Successfully connected to MongoDB!')
-       
-    })
-    .catch((err) => console.log('Connection Error', err)) 
+import './config/connection.js'
 
 
     const app = express();
 app.use(express.json());
-// app.use('/api/books', bookRoutes);
+// app.use('/api/products', productRoutes);
 
 const port = 3000;
 
