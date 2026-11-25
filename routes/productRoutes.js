@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const { category, minPrice,maxprice, sortBy} = req.query;
+    const { category, minPrice,maxPrice, sortBy} = req.query;
 
     const page= Number (req.query.page) || 1;
     const limit =Number(req.query.limit) ||10;
@@ -31,7 +31,13 @@ router.get('/', async (req, res) => {
     if (minPrice){
             filter.price.$gte = Number (minPrice)
         }
+
+    if (maxPrice){
+        filter.price.$lte =Number (maxPrice);
     }
+    }
+
+    let sort
     
     res.json(products);
    
