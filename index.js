@@ -1,13 +1,15 @@
 import 'dotenv/config';
 import dns from 'node:dns';
 dns.setServers(['1.1.1.1', '8.8.8.8']);
-import express from 'express';
 import './config/connection.js'
+import productRoutes from "./routes/productRoutes.js"
+import express from 'express';
 
 
-    const app = express();
+
+const app = express();
 app.use(express.json());
-// app.use('/api/products', productRoutes);
+app.use('/api/products', productRoutes);
 
 const port = 3000;
 

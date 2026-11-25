@@ -1,5 +1,5 @@
 import express from 'express' 
-import Product from "../models/productRoutes.js"
+import Product from "../models/Product.js"
 
 const router=express.Router()
 
@@ -38,16 +38,17 @@ router.get('/', async (req, res) => {
     }
 
     let sort ={};
-        if (sortBy === 'ascendPrice'){ 
+        if (sortBy === 'price_asc'){ 
             sort.price = 1;
         }
-        if (sortBy === 'descendPrice'){
+        if (sortBy === 'price_desc'){
              sort.price = -1;
         }
         const products= await Product.find(filter)
         .sort(sort)
         .skip((page-1) * limit)
-        .limit(limit)
+        .limit(limit);
+
     res.json(products);
    
   } catch (err) {
