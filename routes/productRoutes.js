@@ -37,8 +37,17 @@ router.get('/', async (req, res) => {
     }
     }
 
-    let sort
-    
+    let sort ={};
+        if (sortBy === 'ascendPrice'){ 
+            sort.price = 1;
+        }
+        if (sortBy === 'descendPrice'){
+             sort.price = -1;
+        }
+        const products= await Product.find(filter)
+        .sort(sort)
+        .skip((page-1) * limit)
+        .limit(limit)
     res.json(products);
    
   } catch (err) {
